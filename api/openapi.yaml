@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: MCP Go Template Server
+  description: |
+    Model Context Protocol (MCP) server implementation in Go.
+    
+    This server provides tools, resources, and prompts for AI agents and applications.
+    Communication is done via WebSocket using JSON-RPC 2.0 protocol.
+  version: 1.0.0
+  contact:
+    name: MCP Go Template
+    url: https://github.com/chongliujia/mcp-go-template
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: ws://localhost:8030
+    description: Local development server (WebSocket)
+  - url: http://localhost:8030
+    description: Local development server (HTTP for health checks)
+
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the MCP server
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  name:
+                    type: string
+                    example: mcp-go-template
+                  version:
+                    type: string
+                    example: 1.0.0
+                  uptime:
+                    type: string
+                    example: 1h30m45s
+                  capabilities:
+                    type: object
+                    properties:
+                      tools:
+                        type: boolean
+                      resources:
+                        type: boolean
+                      prompts:
+                        type: boolean
+                      logging:
+                        type: boolean
+
+  /mcp:
+    get:
+      summary: WebSocket endpoint for MCP communication
+      description: |
+        Upgrade HTTP connection to WebSocket for MCP protocol communication.
+        
+        The WebSocket connection uses JSON-RPC 2.0 for message exchange.
+        
+        ## Supported Methods:
+        
+        ### Core Protocol
+        - `initialize` - Initialize the MCP session
+        - `initialized` - Notification that initialization is complete
+        
+        ### Tools
+        - `tools/list` - List available tools
+        - `tools/call` - Execute a tool
+        
+        ### Resources  
+        - `resources/list` - List available resources
+        - `resources/read` - Read a resource
+        
+        ### Prompts
+        - `prompts/list` - List available prompts
+        - `prompts/get` - Get a prompt template
+        
+        ## Example Messages:
+        
+        ### Initialize Request
+        ```json
+        {
+          "jsonrpc": "2.0",
+          "id": "1",
+          "method": "initialize",
+          "params": {
+            "protocolVersion": "2024-11-05",
+            "capabilities": {},
+            "clientInfo": {
+              "name": "example-client",
+              "version": "1.0.0"
+            }
+          }
+        }
+        ```
+        
+        ### Tool Call Request
+        ```json
+        {
+          "jsonrpc": "2.0",
+          "id": "2", 
+          "method": "tools/call",
+          "params": {
+            "name": "calculator",
+            "arguments": {
+              "operation": "add",
+              "a": 5,
+              "b": 3
+            }
+          }
+        }
+        ```
+      responses:
+        '101':
+          description: WebSocket connection established
+        '400':
+          description: Bad request - WebSocket upgrade failed
+        '403':
+          description: Forbidden - IP not allowed (if IP filtering is enabled)
+
+components:
+  schemas:
+    MCPMessage:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+          const: "2.0"
+        id:
+          oneOf:
+            - type: string
+            - type: number
+            - type: "null"
+        method:
+          type: string
+        params:
+          type: object
+        result: {}
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      required:
+        - jsonrpc
+
+    ErrorInfo:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data: {}
+      required:
+        - code
+        - message
+
+    Tool:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        inputSchema:
+          type: object
+      required:
+        - name
+        - inputSchema
+
+    Resource:
+      type: object
+      properties:
+        uri:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        mimeType:
+          type: string
+      required:
+        - uri
+        - name
+
+    Prompt:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        arguments:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              required:
+                type: boolean
+      required:
+        - name
+
+tags:
+  - name: Health
+    description: Health check operations
+  - name: MCP
+    description: Model Context Protocol operations

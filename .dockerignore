@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+docs/
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Test files
+*_test.go
+test/
+testdata/
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+main
+
+# Dependencies (will be downloaded in container)
+vendor/
+
+# Docker files (not needed in image)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
