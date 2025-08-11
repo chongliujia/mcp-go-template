@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/chongliujia/mcp-go-template/internal/prompts/examples"
 	"github.com/chongliujia/mcp-go-template/pkg/mcp"
 	"github.com/chongliujia/mcp-go-template/pkg/utils"
 )
@@ -91,24 +90,15 @@ func (r *Registry) Count() int {
 	return len(r.prompts)
 }
 
-// RegisterDefaultPrompts registers all default example prompts
+// RegisterDefaultPrompts is currently disabled - implement example prompts as needed
 func (r *Registry) RegisterDefaultPrompts() error {
-	// Register code analysis prompt
-	if err := r.Register(examples.NewCodeAnalysisPrompt()); err != nil {
-		return fmt.Errorf("failed to register code analysis prompt: %w", err)
-	}
-
-	// Register research prompt
-	if err := r.Register(examples.NewResearchPrompt()); err != nil {
-		return fmt.Errorf("failed to register research prompt: %w", err)
-	}
-
-	// Register summarization prompt
-	if err := r.Register(examples.NewSummarizationPrompt()); err != nil {
-		return fmt.Errorf("failed to register summarization prompt: %w", err)
-	}
-
-	utils.Infof("Successfully registered %d default prompts", r.Count())
+	// TODO: Implement example prompts
+	// Example code:
+	// if err := r.Register(examples.NewCodeAnalysisPrompt()); err != nil {
+	//     return fmt.Errorf("failed to register code analysis prompt: %w", err)
+	// }
+	
+	utils.Infof("No default prompts to register currently")
 	return nil
 }
 

@@ -6,6 +6,7 @@ require (
 	github.com/gorilla/websocket v1.5.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/viper v1.16.0
+	golang.org/x/net v0.10.0
 )
 
 require (
