@@ -1,54 +1,62 @@
 # mcp-go-template
 
-# Golang MCP (Model Context Protocol) 服务模板
+*English | [中文](README.zh.md)*
 
-这是一个基于 Golang 实现的 MCP 服务模板，提供了完整的项目结构和基础功能实现。
+# Golang MCP (Model Context Protocol) Server Template
 
-## 项目结构
+A complete MCP server template implemented in Go, providing comprehensive project structure and fundamental functionality.
+
+## Project Structure
 
 ```
 mcp-go-template/
-├── api/                        # API 定义和规范
+├── api/                        # API definitions and specifications
 │   ├── mcp/
 │   │   ├── v1/
-│   │   │   └── schema.json     # MCP 协议 JSON Schema
-│   │   └── openapi.yaml        # OpenAPI 规范文档
+│   │   │   └── schema.json     # MCP protocol JSON Schema
+│   │   └── openapi.yaml        # OpenAPI specification
 │   └── README.md
-├── cmd/                        # 应用程序入口点
+├── cmd/                        # Application entry points
 │   └── server/
 │       └── main.go
-├── docs/                       # 项目文档
-│   ├── architecture.md         # 架构设计文档
-│   ├── deployment.md           # 部署指南
-│   └── examples.md             # 使用示例
-├── internal/                   # 私有应用代码
+├── docs/                       # Project documentation
+│   ├── architecture.md         # Architecture design
+│   ├── deployment.md           # Deployment guide
+│   └── examples.md             # Usage examples
+├── internal/                   # Private application code
 │   ├── config/
-│   │   └── config.go          # 配置管理
+│   │   └── config.go          # Configuration management
 │   ├── server/
-│   │   └── server.go          # 主服务器逻辑
-│   ├── tools/                 # MCP 工具实现
-│   │   ├── registry.go        # 工具注册器
+│   │   └── server.go          # Main server logic
+│   ├── tools/                 # MCP tools implementation
+│   │   ├── registry.go        # Tool registry
 │   │   └── examples/
-│   │       ├── calculator.go  # 计算器工具示例
-│   │       └── file_ops.go    # 文件操作工具示例
-│   ├── resources/             # MCP 资源管理
-│   │   ├── registry.go        # 资源注册器
+│   │       ├── calculator.go  # Calculator tool example
+│   │       ├── web_search.go  # Web search tool
+│   │       ├── document_analyzer.go # Document analysis tool
+│   │       └── knowledge_graph.go   # Knowledge graph tool
+│   ├── resources/             # MCP resource management
+│   │   ├── registry.go        # Resource registry
 │   │   └── examples/
-│   │       └── memory.go      # 内存资源示例
-│   └── prompts/               # MCP 提示管理
-│       ├── registry.go        # 提示注册器
+│   │       └── memory.go      # Memory resource example
+│   └── prompts/               # MCP prompt management
+│       ├── registry.go        # Prompt registry
 │       └── examples/
-│           └── templates.go   # 提示模板示例
-├── pkg/                       # 公共库代码
+│           └── templates.go   # Prompt templates
+├── pkg/                       # Public library code
 │   ├── mcp/
-│   │   ├── types.go          # MCP 协议类型定义
-│   │   ├── handler.go        # MCP 处理器
-│   │   └── middleware.go     # 中间件
+│   │   ├── types.go          # MCP protocol type definitions
+│   │   ├── handler.go        # MCP handler
+│   │   └── validation.go     # Protocol validation
 │   └── utils/
-│       └── logger.go         # 日志工具
-├── test/                      # 测试代码
-│   ├── integration/           # 集成测试
-│   └── testdata/             # 测试数据
+│       └── logger.go         # Logging utilities
+├── test/                      # Test code
+│   ├── integration/           # Integration tests
+│   └── testdata/             # Test data
+├── testAgent/                 # LangGraph agent testing
+│   ├── langgraph_mcp_agent.py # LangGraph MCP test agent
+│   ├── test_runner.py         # Test runner
+│   └── requirements.txt       # Python dependencies
 ├── go.mod
 ├── go.sum
 ├── README.md
@@ -56,111 +64,138 @@ mcp-go-template/
 └── docker-compose.yml
 ```
 
-## 特性
+## Features
 
-- 🚀 完整的 MCP 协议实现
-- 🔧 可扩展的工具系统
-- 📦 资源管理支持
-- 🎯 提示模板系统
-- 🔒 安全的中间件支持
-- 📝 完整的文档和示例
-- 🐳 Docker 支持
-- ✅ 完整的测试覆盖
+- 🚀 Complete MCP protocol implementation
+- 🔧 Extensible tool system
+- 📦 Resource management support
+- 🎯 Prompt template system
+- 🔒 Secure middleware support
+- 📝 Comprehensive documentation and examples
+- 🐳 Docker support
+- ✅ Complete test coverage
+- 🤖 LangGraph agent integration testing
 
-## 快速开始
+## Quick Start
 
 ```bash
-# 克隆项目
+# Clone the project
 git clone <your-repo-url>
 cd mcp-go-template
 
-# 初始化 Go 模块
-go mod init github.com/your-username/mcp-go-template
+# Initialize Go module
+go mod init github.com/chongliujia/mcp-go-template
 
-# 安装依赖
+# Install dependencies
 go mod tidy
 
-# 运行服务
+# Run the service
 go run cmd/server/main.go
 
-# 或使用 Docker
+# Or use Docker
 docker-compose up
 ```
 
-## 实现状态
+## Implementation Status
 
-- ✅ 项目结构设计
-- ✅ 基础 MCP 协议实现
-- ✅ 服务器核心功能
-- ✅ 深度研究工具系统
-- ✅ 配置管理系统
-- ✅ Docker 支持
+- ✅ Project structure design
+- ✅ Basic MCP protocol implementation
+- ✅ Server core functionality
+- ✅ Advanced research tool system
+- ✅ Configuration management system
+- ✅ Docker support
 
-## 深度研究工具集
+## Advanced Research Tool Suite
 
-本项目专为深度研究场景设计，提供以下高级工具：
+This project is designed specifically for advanced research scenarios, providing the following sophisticated tools:
 
-### 🔍 Web 搜索工具 (web_search)
-- 支持多搜索引擎 (DuckDuckGo, Bing, Google)
-- 可配置搜索结果数量和安全搜索
-- 结构化搜索结果输出
+### 🔍 Web Search Tool (web_search)
+- Multi-search engine support (DuckDuckGo, Bing, Google)
+- Configurable result count and safe search
+- Structured search result output
 
-### 📄 文档分析工具 (document_analyzer)
-- 支持文件、URL、文本直接分析
-- 关键词提取和频率分析
-- 文档统计信息（字数、句数、阅读时间等）
-- 自动摘要生成
-- 实体识别
+### 📄 Document Analysis Tool (document_analyzer)
+- Support for files, URLs, and direct text analysis
+- Keyword extraction and frequency analysis
+- Document statistics (word count, sentence count, reading time, etc.)
+- Automatic summarization
+- Entity recognition
 
-### 🕸️ 知识图谱工具 (knowledge_graph)
-- 从文本构建知识图谱
-- 实体提取（人物、组织、地点、概念等）
-- 关系推理和权重计算
-- 图谱可视化和查询
+### 🕸️ Knowledge Graph Tool (knowledge_graph)
+- Build knowledge graphs from text
+- Entity extraction (people, organizations, places, concepts, etc.)
+- Relationship inference and weight calculation
+- Graph visualization and querying
 
-### 🧮 计算器工具 (calculator)
-- 基础数学运算
-- 支持浮点数运算
+### 🧮 Calculator Tool (calculator)
+- Basic mathematical operations
+- Floating-point arithmetic support
 
-## 开发指南
+## Development Guide
 
-### 添加新工具
+### Adding New Tools
 
-1. 在 `internal/tools/examples/` 下创建新的工具文件
-2. 在 `internal/tools/registry.go` 中注册新工具
-3. 实现 MCP 工具接口
+1. Create a new tool file under `internal/tools/examples/`
+2. Register the new tool in `internal/tools/registry.go`
+3. Implement the MCP tool interface
 
-### 添加新资源
+### Adding New Resources
 
-1. 在 `internal/resources/examples/` 下创建新的资源文件
-2. 在 `internal/resources/registry.go` 中注册新资源
-3. 实现 MCP 资源接口
+1. Create a new resource file under `internal/resources/examples/`
+2. Register the new resource in `internal/resources/registry.go`
+3. Implement the MCP resource interface
 
-### 配置管理
+### Configuration Management
 
-项目使用 Viper 进行配置管理，支持多种配置格式。配置文件位于 `internal/config/config.go`。
+The project uses Viper for configuration management, supporting multiple configuration formats. Configuration files are located at `internal/config/config.go`.
 
-## 测试
+## Testing
+
+### Go Unit Tests
 
 ```bash
-# 运行单元测试
+# Run unit tests
 go test ./...
 
-# 运行集成测试
+# Run integration tests
 go test ./test/integration/...
 
-# 测试覆盖率
+# Test coverage
 go test -cover ./...
 ```
 
-## 部署
+### LangGraph Agent Testing
 
-详见 `docs/deployment.md`
+Use the LangGraph-built agent to test the complete functionality of the MCP service:
 
-## 贡献
+```bash
+# Enter the test directory
+cd testAgent
 
-欢迎提交 Issue 和 Pull Request！
+# Install Python dependencies (if needed)
+pip install -r requirements.txt
 
-## 许可证
+# Quick connection test
+python test_runner.py quick
+
+# Complete functionality test
+python test_runner.py
+```
+
+Agent testing features:
+- 🔌 WebSocket connection and MCP protocol handshake
+- 🛠️ Automatic discovery and testing of all tools
+- 📊 Detailed test report generation
+- 🤖 LangGraph-based intelligent workflows
+
+## Deployment
+
+See `docs/deployment.md` for details
+
+## Contributing
+
+Issues and Pull Requests are welcome!
+
+## License
 
 MIT License

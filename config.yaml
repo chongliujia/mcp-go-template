@@ -1,0 +1,51 @@
+# MCP Go Template Configuration
+# Copy this file to config.yaml and modify as needed
+
+server:
+  host: "localhost"
+  port: 8030
+  timeout: 30
+
+logging:
+  level: "info"        # debug, info, warn, error
+  format: "json"       # json, text
+
+mcp:
+  name: "mcp-go-template"
+  version: "1.0.0"
+  description: "A Go-based MCP server template with deep research capabilities"
+  instructions: |
+    This MCP server provides advanced research tools including:
+    - Web search capabilities
+    - Document analysis and keyword extraction
+    - Knowledge graph construction and analysis
+    - Mathematical calculations
+    
+    Use these tools for comprehensive research and analysis tasks.
+  
+  capabilities:
+    tools:
+      enabled: true
+      list_changed: false
+    
+    resources:
+      enabled: true
+      subscribe: false
+      list_changed: false
+    
+    prompts:
+      enabled: true
+      list_changed: false
+    
+    logging: true
+  
+  metadata:
+    author: "Chongliu Jia"
+    contact: "jcl31415926@gmail.com"
+    repository: "https://github.com/chongliujia/mcp-go-template"
+
+security:
+  enable_tls: false
+  cert_file: ""
+  key_file: ""
+  allowed_ips: []       # Empty array means allow all IPs
