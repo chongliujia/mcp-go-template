@@ -35,8 +35,8 @@ WORKDIR /app
 # Copy binary from builder stage
 COPY --from=builder /app/main .
 
-# Copy config files if they exist
-COPY --from=builder /app/config* ./config/ 2>/dev/null || true
+# Copy config files
+COPY config.example.yaml ./config.yaml
 
 # Create directories for data
 RUN mkdir -p /app/data /app/logs && \
