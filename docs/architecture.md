@@ -7,38 +7,38 @@
 ```mermaid
 graph TB
     subgraph "Client Layer"
-        C1[LangGraph Agent<br/>testAgent/langgraph_mcp_agent.py]
-        C2[JavaScript Client<br/>WebSocket Connection]
-        C3[Python Client<br/>websockets library]
+        C1["LangGraph Agent<br/>testAgent/langgraph_mcp_agent.py"]
+        C2["JavaScript Client<br/>WebSocket Connection"]
+        C3["Python Client<br/>websockets library"]
     end
     
     subgraph "Server Layer"
-        S1[HTTP Server<br/>internal/server/server.go]
-        S2[WebSocket Handler<br/>handleWebSocket()]
-        S3[Health Check<br/>handleHealth()]
-        S4[Root Handler<br/>handleRoot()]
+        S1["HTTP Server<br/>internal/server/server.go"]
+        S2["WebSocket Handler<br/>handleWebSocket()"]
+        S3["Health Check<br/>handleHealth()"]
+        S4["Root Handler<br/>handleRoot()"]
     end
     
     subgraph "MCP Protocol Layer"
-        M1[Message Handler<br/>pkg/mcp/handler.go]
-        M2[Protocol Types<br/>pkg/mcp/types.go]
-        M3[Message Validation<br/>pkg/mcp/validation.go]
+        M1["Message Handler<br/>pkg/mcp/handler.go"]
+        M2["Protocol Types<br/>pkg/mcp/types.go"]
+        M3["Message Validation<br/>pkg/mcp/validation.go"]
     end
     
     subgraph "Business Logic Layer"
-        T1[Calculator Tool<br/>internal/tools/examples/calculator.go]
-        T2[Web Search Tool<br/>internal/tools/examples/web_search.go]
-        T3[Document Analyzer<br/>internal/tools/examples/document_analyzer.go]
-        T4[Knowledge Graph Tool<br/>internal/tools/examples/knowledge_graph.go]
+        T1["Calculator Tool<br/>internal/tools/examples/calculator.go"]
+        T2["Web Search Tool<br/>internal/tools/examples/web_search.go"]
+        T3["Document Analyzer<br/>internal/tools/examples/document_analyzer.go"]
+        T4["Knowledge Graph Tool<br/>internal/tools/examples/knowledge_graph.go"]
     end
     
     subgraph "Configuration Layer"
-        CF1[Config Management<br/>internal/config/config.go]
-        CF2[Logger Utilities<br/>pkg/utils/logger.go]
+        CF1["Config Management<br/>internal/config/config.go"]
+        CF2["Logger Utilities<br/>pkg/utils/logger.go"]
     end
     
     subgraph "Application Entry"
-        APP[Main Application<br/>cmd/server/main.go]
+        APP["Main Application<br/>cmd/server/main.go"]
     end
     
     C1 -->|WebSocket JSON-RPC| S2
@@ -98,11 +98,11 @@ graph TB
 ```mermaid
 graph LR
     subgraph "Server Struct"
-        SS[Server<br/>internal/server/server.go]
-        SS --> Config[config *config.Config]
-        SS --> Handler[handler mcp.Handler]
-        SS --> Upgrader[upgrader websocket.Upgrader]
-        SS --> Logger[logger *logrus.Logger]
+        SS["Server<br/>internal/server/server.go"]
+        SS --> Config["config *config.Config"]
+        SS --> Handler["handler mcp.Handler"]
+        SS --> Upgrader["upgrader websocket.Upgrader"]
+        SS --> Logger["logger *logrus.Logger"]
     end
     
     subgraph "HTTP Endpoints"
@@ -112,9 +112,9 @@ graph LR
     end
     
     subgraph "Connection Handling"
-        WS[WebSocket Connection<br/>handleConnection()]
-        MSG[Message Processing<br/>sendMessage()]
-        IP[IP Filtering<br/>getClientIP()]
+        WS["WebSocket Connection<br/>handleConnection()"]
+        MSG["Message Processing<br/>sendMessage()"]
+        IP["IP Filtering<br/>getClientIP()"]
     end
     
     SS --> EP1
@@ -292,26 +292,26 @@ type CalculatorTool struct {
 ```mermaid
 graph TB
     subgraph "LangGraph Agent Architecture"
-        A1[MCPTestAgent<br/>testAgent/langgraph_mcp_agent.py:42]
+        A1["MCPTestAgent<br/>testAgent/langgraph_mcp_agent.py:42"]
         
         subgraph "State Graph Nodes"
-            N1[check_mcp_status<br/>_check_mcp_status()]
-            N2[discover_tools<br/>_discover_tools()]
-            N3[test_calculator<br/>_test_calculator()]
-            N4[test_web_search<br/>_test_web_search()]
-            N5[test_knowledge_graph<br/>_test_knowledge_graph()]
-            N6[generate_report<br/>_generate_report()]
+            N1["check_mcp_status<br/>_check_mcp_status()"]
+            N2["discover_tools<br/>_discover_tools()"]
+            N3["test_calculator<br/>_test_calculator()"]
+            N4["test_web_search<br/>_test_web_search()"]
+            N5["test_knowledge_graph<br/>_test_knowledge_graph()"]
+            N6["generate_report<br/>_generate_report()"]
         end
         
         subgraph "State Management"
-            S1[AgentState<br/>TypedDict]
-            S2[MCPServiceStatus<br/>Enum]
-            S3[MCPTool<br/>Dataclass]
+            S1["AgentState<br/>TypedDict"]
+            S2["MCPServiceStatus<br/>Enum"]
+            S3["MCPTool<br/>Dataclass"]
         end
         
         subgraph "Communication Layer"
-            WS[WebSocket Client<br/>websockets library]
-            HTTP[HTTP Client<br/>httpx library]
+            WS["WebSocket Client<br/>websockets library"]
+            HTTP["HTTP Client<br/>httpx library"]
         end
     end
     
@@ -418,29 +418,29 @@ graph LR
 
 ```mermaid
 flowchart TD
-    A[Client Request] --> B[WebSocket Connection<br/>server.go:handleWebSocket()]
-    B --> C[JSON Message Parse<br/>server.go]
-    C --> D[MCP Message Validation<br/>mcp/types.go]
-    D --> E[Handler Dispatch<br/>handler.go:HandleMessage()]
+    A["Client Request"] --> B["WebSocket Connection<br/>server.go:handleWebSocket()"]
+    B --> C["JSON Message Parse<br/>server.go"]
+    C --> D["MCP Message Validation<br/>mcp/types.go"]
+    D --> E["Handler Dispatch<br/>handler.go:HandleMessage()"]
     
-    E --> F{Message Type}
-    F -->|Request| G[handleRequest()<br/>handler.go]
-    F -->|Notification| H[handleNotification()<br/>handler.go]
+    E --> F{"Message Type"}
+    F -->|Request| G["handleRequest()<br/>handler.go"]
+    F -->|Notification| H["handleNotification()<br/>handler.go"]
     
-    G --> I{Method Type}
-    I -->|initialize| J[Initialize()<br/>handler.go]
-    I -->|tools/list| K[ListTools()<br/>handler.go]
-    I -->|tools/call| L[CallTool()<br/>handler.go]
+    G --> I{"Method Type"}
+    I -->|initialize| J["Initialize()<br/>handler.go"]
+    I -->|tools/list| K["ListTools()<br/>handler.go"]
+    I -->|tools/call| L["CallTool()<br/>handler.go"]
     
-    L --> M[Tool Execute()<br/>examples/*.go]
-    M --> N[Result Processing]
-    N --> O[JSON Response<br/>server.go:sendMessage()]
-    O --> P[WebSocket Send]
+    L --> M["Tool Execute()<br/>examples/*.go"]
+    M --> N["Result Processing"]
+    N --> O["JSON Response<br/>server.go:sendMessage()"]
+    O --> P["WebSocket Send"]
     
     J --> N
     K --> N
-    H --> Q[Notification Processing]
-    Q --> R[State Update]
+    H --> Q["Notification Processing"]
+    Q --> R["State Update"]
     
     style A fill:#e1f5fe
     style M fill:#fff3e0
@@ -479,33 +479,6 @@ graph TB
     E3 --> EC5
 ```
 
-## 9. 部署架构
-
-### Docker化部署
-
-```mermaid
-graph LR
-    subgraph "Docker Container"
-        DC1[Go Binary<br/>Built from cmd/server/main.go]
-        DC2[Config File<br/>config.yaml]
-        DC3[TLS Certificates<br/>Optional]
-    end
-    
-    subgraph "External Dependencies"
-        ED1[Log Files<br/>Volume Mount]
-        ED2[Configuration<br/>Volume Mount]
-    end
-    
-    DC1 --> DC2
-    DC1 --> DC3
-    DC1 --> ED1
-    DC1 --> ED2
-```
-
-**相关文件：**
-- `Dockerfile` - 容器构建配置
-- `docker-compose.yml` - 服务编排配置
-- `config.example.yaml` - 配置模板
 
 ## 总结
 
