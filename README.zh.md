@@ -6,6 +6,14 @@
 
 这是一个基于 Golang 实现的 MCP 服务模板，提供了完整的项目结构和基础功能实现。
 
+## 关于项目
+
+![run_server.png](images/run_server.png)
+
+![test_runner_quick.png](images/test_runner_quick.png)
+
+![test_runner.png](images/test_runner.png)
+
 ## 项目结构
 
 ```

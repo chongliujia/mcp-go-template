@@ -6,6 +6,15 @@
 
 A complete MCP server template implemented in Go, providing comprehensive project structure and fundamental functionality.
 
+## About The Project
+
+![run_server.png](images/run_server.png)
+
+![test_runner_quick.png](images/test_runner_quick.png)
+
+![test_runner.png](images/test_runner.png)
+
+
 ## Project Structure
 
 ```
@@ -80,7 +89,7 @@ mcp-go-template/
 
 ```bash
 # Clone the project
-git clone <your-repo-url>
+git clone https://github.com/chongliujia/mcp-go-template.git
 cd mcp-go-template
 
 # Initialize Go module
